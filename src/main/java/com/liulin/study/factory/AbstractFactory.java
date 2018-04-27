@@ -24,12 +24,18 @@ import com.liulin.study.factory.shape.Square;
  * 裤子（某一具体产品），这些具体的上衣其实也都是上衣（抽象产品），具体的裤子也都是裤子（另一个抽象产品）。
  * 【优点】：当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。
  * 【缺点】：产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的 Creator 里加代码，又要在具体的里面加代码。 【使用场景】：
- * 1、QQ换皮肤，一整套一起换。 2、生成不同操作系统的程序。 【注意事项】：产品族难扩展，产品等级易扩展。
+ * 1、QQ换皮肤，一整套一起换。 2、生成不同操作系统的程序。 
+ * 【注意事项】：产品族难扩展，产品等级易扩展。
  * 
  * @author liulin_think
  *
  */
 public interface AbstractFactory {
+	Color getColor(Class<? extends Color> color) throws InstantiationException, IllegalAccessException;
+
+	Shape getShape(Class<? extends Shape> shape) throws InstantiationException, IllegalAccessException;
+}
+class AbstractFactoryImpl implements AbstractFactory {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 		AbstractFactory abstractFactory = new AbstractFactoryImpl();
 		abstractFactory.getColor(Red.class).fill();
@@ -39,12 +45,6 @@ public interface AbstractFactory {
 		abstractFactory.getShape(Square.class).draw();
 		abstractFactory.getShape(Circle.class).draw();
 	}
-	Color getColor(Class<? extends Color> color) throws InstantiationException, IllegalAccessException;
-
-	Shape getShape(Class<? extends Shape> shape) throws InstantiationException, IllegalAccessException;
-}
-class AbstractFactoryImpl implements AbstractFactory {
-
 	@Override
 	public Color getColor(Class<? extends Color> color) throws InstantiationException, IllegalAccessException {
 		return color.newInstance();
