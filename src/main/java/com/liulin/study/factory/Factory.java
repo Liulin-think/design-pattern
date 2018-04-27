@@ -26,9 +26,12 @@ import com.liulin.study.factory.shape.Square;
  * @author liulin_think
  *
  */
-public class Factory {
+public interface Factory {
+	public Shape getShape(Class<? extends Shape> c) throws InstantiationException, IllegalAccessException;
+} 
+class FactoryImpl implements Factory{
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		Factory factory = new Factory();
+		Factory factory = new FactoryImpl();
 		factory.getShape(Rectangle.class).draw();
 		factory.getShape(Square.class).draw();
 		factory.getShape(Circle.class).draw();
