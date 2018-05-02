@@ -2,8 +2,14 @@ package com.liulin.study.builder;
 
 import com.liulin.study.factory.abstractfactory.AbstractFactory;
 import com.liulin.study.factory.abstractfactory.impl.AbstractFactoryImpl;
+import com.liulin.study.vo.color.book.BookBlue;
 import com.liulin.study.vo.color.book.BookColor;
+import com.liulin.study.vo.color.book.BookGreen;
+import com.liulin.study.vo.color.book.BookRed;
+import com.liulin.study.vo.shape.book.BookCircle;
+import com.liulin.study.vo.shape.book.BookRectangle;
 import com.liulin.study.vo.shape.book.BookShape;
+import com.liulin.study.vo.shape.book.BookSquare;
 
 /**
  * 【建造者模式】 
@@ -26,7 +32,12 @@ import com.liulin.study.vo.shape.book.BookShape;
  *
  */
 public class BookBuilder {
-	public static void BuilderSomeThing(Class<BookColor> color,Class<BookShape> shape) throws InstantiationException, IllegalAccessException {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+		BuilderSomeThing(BookBlue.class, BookCircle.class);
+		BuilderSomeThing(BookRed.class, BookRectangle.class);
+		BuilderSomeThing(BookGreen.class, BookSquare.class);
+	}
+	public static void BuilderSomeThing(Class<? extends BookColor> color,Class<? extends BookShape> shape) throws InstantiationException, IllegalAccessException {
 		AbstractFactory factory = new AbstractFactoryImpl();
 		// 先填充颜色
 		factory.getColor(color).fill();
