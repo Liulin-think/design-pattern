@@ -1,13 +1,7 @@
-package com.liulin.study.factory;
+package com.liulin.study.factory.abstractfactory;
 
-import com.liulin.study.factory.color.Blue;
-import com.liulin.study.factory.color.Color;
-import com.liulin.study.factory.color.Green;
-import com.liulin.study.factory.color.Red;
-import com.liulin.study.factory.shape.Circle;
-import com.liulin.study.factory.shape.Rectangle;
-import com.liulin.study.factory.shape.Shape;
-import com.liulin.study.factory.shape.Square;
+import com.liulin.study.vo.color.Color;
+import com.liulin.study.vo.shape.Shape;
 
 /**
  * 【 抽象工厂模式】（Abstract Factory
@@ -34,24 +28,4 @@ public interface AbstractFactory {
 	Color getColor(Class<? extends Color> color) throws InstantiationException, IllegalAccessException;
 
 	Shape getShape(Class<? extends Shape> shape) throws InstantiationException, IllegalAccessException;
-}
-class AbstractFactoryImpl implements AbstractFactory {
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		AbstractFactory abstractFactory = new AbstractFactoryImpl();
-		abstractFactory.getColor(Red.class).fill();
-		abstractFactory.getColor(Green.class).fill();
-		abstractFactory.getColor(Blue.class).fill();
-		abstractFactory.getShape(Rectangle.class).draw();
-		abstractFactory.getShape(Square.class).draw();
-		abstractFactory.getShape(Circle.class).draw();
-	}
-	@Override
-	public Color getColor(Class<? extends Color> color) throws InstantiationException, IllegalAccessException {
-		return color.newInstance();
-	}
-
-	@Override
-	public Shape getShape(Class<? extends Shape> shape) throws InstantiationException, IllegalAccessException {
-		return shape.newInstance();
-	}
 }

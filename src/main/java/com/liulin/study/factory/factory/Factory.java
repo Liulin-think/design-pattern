@@ -1,9 +1,6 @@
-package com.liulin.study.factory;
+package com.liulin.study.factory.factory;
 
-import com.liulin.study.factory.shape.Circle;
-import com.liulin.study.factory.shape.Rectangle;
-import com.liulin.study.factory.shape.Shape;
-import com.liulin.study.factory.shape.Square;
+import com.liulin.study.vo.shape.Shape;
 
 /**
  * 【工厂模式】（Factory Pattern）是 Java 中最常用的设计模式之一。 这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
@@ -26,20 +23,4 @@ import com.liulin.study.factory.shape.Square;
  */
 public interface Factory {
 	public Shape getShape(Class<? extends Shape> c) throws InstantiationException, IllegalAccessException;
-}
-
-class FactoryImpl implements Factory {
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		Factory factory = new FactoryImpl();
-		factory.getShape(Rectangle.class).draw();
-		factory.getShape(Square.class).draw();
-		factory.getShape(Circle.class).draw();
-	}
-
-	public Shape getShape(Class<? extends Shape> c) throws InstantiationException, IllegalAccessException {
-		if (c == null) {
-			return null;
-		}
-		return c.newInstance();
-	}
 }

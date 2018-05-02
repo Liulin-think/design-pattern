@@ -1,4 +1,4 @@
-package com.liulin.study.factory.shape;
+package com.liulin.study.vo.shape;
 
 public class Circle implements Shape {
 	@Override
