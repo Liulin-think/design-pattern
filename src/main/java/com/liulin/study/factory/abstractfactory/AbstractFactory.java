@@ -24,8 +24,8 @@ import com.liulin.study.vo.shape.Shape;
  * @author liulin_think
  *
  */
-public interface AbstractFactory {
-	Color getColor(Class<? extends Color> color) throws InstantiationException, IllegalAccessException;
+public interface AbstractFactory<C,S> {
+	Color getColor(Class<? extends C> color) throws InstantiationException, IllegalAccessException;
 
-	Shape getShape(Class<? extends Shape> shape) throws InstantiationException, IllegalAccessException;
+	Shape getShape(Class<? extends S> shape) throws InstantiationException, IllegalAccessException;
 }
