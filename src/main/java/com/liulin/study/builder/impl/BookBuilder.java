@@ -1,7 +1,8 @@
-package com.liulin.study.builder;
+package com.liulin.study.builder.impl;
 
+import com.liulin.study.builder.Builder;
 import com.liulin.study.factory.abstractfactory.AbstractFactory;
-import com.liulin.study.factory.abstractfactory.impl.AbstractFactoryImpl;
+import com.liulin.study.factory.abstractfactory.impl.BookAbstractFactoryImpl;
 import com.liulin.study.vo.color.book.BookBlue;
 import com.liulin.study.vo.color.book.BookColor;
 import com.liulin.study.vo.color.book.BookGreen;
@@ -31,14 +32,16 @@ import com.liulin.study.vo.shape.book.BookSquare;
  * @author liulin_think
  *
  */
-public class BookBuilder {
+public class BookBuilder implements Builder<BookColor, BookShape>{
+	
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		BuilderSomeThing(BookBlue.class, BookCircle.class);
-		BuilderSomeThing(BookRed.class, BookRectangle.class);
-		BuilderSomeThing(BookGreen.class, BookSquare.class);
+		BookBuilder bookBuilder = new BookBuilder();
+		bookBuilder.BuilderSomeThing(BookBlue.class, BookCircle.class);
+		bookBuilder.BuilderSomeThing(BookRed.class, BookRectangle.class);
+		bookBuilder.BuilderSomeThing(BookGreen.class, BookSquare.class);
 	}
-	public static void BuilderSomeThing(Class<? extends BookColor> color,Class<? extends BookShape> shape) throws InstantiationException, IllegalAccessException {
-		AbstractFactory factory = new AbstractFactoryImpl();
+	public void BuilderSomeThing(Class<? extends BookColor> color,Class<? extends BookShape> shape) throws InstantiationException, IllegalAccessException {
+		AbstractFactory<BookColor, BookShape> factory = new BookAbstractFactoryImpl();
 		// 先填充颜色
 		factory.getColor(color).fill();
 		// 在绘制
