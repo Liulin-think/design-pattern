@@ -54,7 +54,7 @@ public class Adapter2 implements Target{
 	}
 	@Override
 	public void model2() {
-		System.out.println("Inside Adapter::model2() method.");
+		System.out.println("Inside Adapter2::model2() method.");
 	}
 	
 }
