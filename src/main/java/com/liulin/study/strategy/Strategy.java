@@ -31,11 +31,7 @@ package com.liulin.study.strategy;
  */
 public class Strategy {
 	public static void main(String[] args) {
-		System.out.println("执行策略1:");
-		Algorithm fast=new Fast();
-		fast.Calculation();
-		System.out.println("执行策略2:");
-		Algorithm small=new Small();
-		small.Calculation();
+		new Calculation(new Fast()).execute();
+		new Calculation(new Small()).execute();
 	}
 }
