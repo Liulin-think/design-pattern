@@ -35,15 +35,15 @@ public class ChainOfResponsibility {
 
 	private static AbstractLogger getChainOfLoggers() {
 
-		AbstractLogger errorLogger = new ErrorLogger();
-		AbstractLogger fileLogger = new FileLogger();
 		AbstractLogger consoleLogger = new ConsoleLogger();
+		AbstractLogger fileLogger = new FileLogger();
+		AbstractLogger errorLogger = new ErrorLogger();
 
 		// 设定自己的下一级,个人感觉如果一般的情况下,设定下一级应该是在实现类中就可以完成的,至少这个列子中,是可以直接在实现类中完成这一步的.根据自己具体的情况具体分析吧.
-		errorLogger.setNextLogger(fileLogger);
-		fileLogger.setNextLogger(consoleLogger);
+		consoleLogger.setNextLogger(fileLogger);
+		fileLogger.setNextLogger(errorLogger);
 
-		return errorLogger;
+		return consoleLogger;
 	}
 
 	public static void main(String[] args) {

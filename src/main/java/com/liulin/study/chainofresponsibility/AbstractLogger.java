@@ -12,7 +12,7 @@ public abstract class AbstractLogger {
 
 	public void logMessage(int level, String message) {
 		// 判断是否有权限处理,有权限处理则直接处理.
-		if (this.level <= level) {
+		if (this.level >= level) {
 			write(message);
 			return;
 		}
