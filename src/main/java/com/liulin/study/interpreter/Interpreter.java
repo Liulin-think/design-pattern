@@ -28,7 +28,7 @@ package com.liulin.study.interpreter;
  *
  */
 public class Interpreter {
-	private void mian() {
+	public static void main(String[] args) {
 		System.out.println("没搞懂解释器模式什么时候会需要用到.留着吧,以后有需要的时候再补上");
 	}
 }
